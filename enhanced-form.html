@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="User registration form with HTML5 validation"/>
+  <title>Enhanced User Registration Form</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --success-color: #27ae60;
+      --error-color: #e74c3c;
+      --light-gray: #ecf0f1;
+      --dark-gray: #7f8c8d;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--light-gray);
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+    header, main, footer {
+      background-color: #fff;
+      padding: 25px;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+    h1 {
+      margin-top: 0;
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+    }
+    fieldset {
+      border: 2px solid var(--light-gray);
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+    }
+    legend {
+      font-weight: bold;
+      color: var(--primary-color);
+      padding: 0 10px;
+      font-size: 1.1em;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+    label.required::after {
+      content: " *";
+      color: var(--error-color);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+    input:invalid {
+      border-color: var(--error-color);
+    }
+    button {
+      padding: 12px 25px;
+      background-color: var(--success-color);
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    button:hover {
+      background-color: #219653;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    video {
+      width: 100%;
+      max-height: 450px;
+      margin: 20px 0;
+      border-radius: 5px;
+      background: #000;
+    }
+    .form-note {
+      font-size: 0.9em;
+      color: var(--dark-gray);
+      margin-top: 5px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--dark-gray);
+    }
+    @media (max-width: 600px) {
+      header, main, footer {
+        padding: 15px;
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>User Registration</h1>
+  <p>Please fill out the form below. All required fields must be completed before submission.</p>
+</header>
+
+<main>
+  <section>
+    <h2>Form Instructions</h2>
+    <ul>
+      <li>All required fields are marked with an asterisk (*)</li>
+      <li>Email must be valid (e.g., user@example.com)</li>
+      <li>Password must be at least 8 characters with upper/lower case and a number</li>
+      <li>Date of birth must be in the past</li>
+    </ul>
+  </section>
+
+  <form action="/submit" method="post" autocomplete="on">
+    <fieldset>
+      <legend>Personal Information</legend>
+
+      <label for="fname" class="required">First Name</label>
+      <input type="text" id="fname" name="firstname" required placeholder="e.g. John" pattern="[A-Za-z\s]+" minlength="2" maxlength="50" title="Letters and spaces only" />
+
+      <label for="lname" class="required">Last Name</label>
+      <input type="text" id="lname" name="lastname" required placeholder="e.g. Doe" pattern="[A-Za-z\s]+" minlength="2" maxlength="50" title="Letters and spaces only" />
+
+      <label for="email" class="required">Email Address</label>
+      <input type="email" id="email" name="email" required placeholder="e.g. john@example.com" />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. 123-456-7890" pattern="[\d\-]{10,15}" />
+
+      <label for="dob" class="required">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required max="2025-08-07" />
+      <p class="form-note">Must be at least 13 years old</p>
+
+      <label for="country" class="required">Country</label>
+      <select id="country" name="country" required>
+        <option value="" disabled selected>-- Select Country --</option>
+        <option value="us">🇺🇸 United States</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="ke">🇰🇪 Kenya</option>
+        <option value="in">🇮🇳 India</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="au">🇦🇺 Australia</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Account Settings</legend>
+
+      <label for="username" class="required">Username</label>
+      <input type="text" id="username" name="username" required placeholder="Choose a username" minlength="4" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers, and underscores only" />
+
+      <label for="password" class="required">Password</label>
+      <input type="password" id="password" name="password" required placeholder="Minimum 8 characters" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="At least one uppercase, one lowercase, and one number" />
+
+      <label for="confirm" class="required">Confirm Password</label>
+      <input type="password" id="confirm" name="confirm" required placeholder="Repeat your password" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferences</legend>
+
+      <label for="bio">Short Bio</label>
+      <textarea id="bio" name="bio" placeholder="Tell us about yourself..." rows="4" maxlength="500"></textarea>
+
+      <label for="avatar">Profile Picture</label>
+      <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+
+      <label for="theme">Preferred Theme</label>
+      <select id="theme" name="theme">
+        <option value="light">🌞 Light</option>
+        <option value="dark">🌙 Dark</option>
+        <option value="system">🖥️ System Default</option>
+      </select>
+
+      <label>
+        <input type="checkbox" name="newsletter" checked />
+        Subscribe to newsletter
+      </label>
+
+      <label for="referral">Referral Code</label>
+      <input type="text" id="referral" name="referral" value="WELCOME2025" readonly />
+    </fieldset>
+
+    <fieldset>
+      <legend>Payment Information (Demo)</legend>
+
+      <label for="card" class="required">Card Number</label>
+      <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" pattern="[\d\s]{13,19}" required disabled />
+
+      <label for="expiry" class="required">Expiry Date</label>
+      <input type="month" id="expiry" name="expiry" required disabled />
+    </fieldset>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <button type="submit">Create Account</button>
+      <button type="reset" style="background-color: var(--dark-gray); margin-left: 10px;">Reset Form</button>
+    </div>
+  </form>
+
+  <section>
+    <h2>Sample User Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Country</th>
+          <th>Join Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Damaris Ngina</td><td>damakamaah@gmail.com</td><td>Kenya</td><td>2025-01-01</td></tr>
+        <tr><td>Bossie levi</td><td>bossielevi@gmail.com</td><td>Kenya</td><td>2025-02-15</td></tr>
+        <tr><td>Priya Patel</td><td>priya@example.com</td><td>India</td><td>2025-05-10</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Welcome Video</h2>
+
+    <video src="7947426-hd_1920_1080_30fps.mp4" alt="Welcome to our service" controls>
+        
+      Your browser does not support the video tag.
+    </video>
+
+    <h3>Welcome image</h3>
+    <img src=https://images.pexels.com/photos/3521937/pexels-photo-3521937.jpeg alt="Welcome to our service" style="width: 100%; max-width: 600px; border-radius: 5px;">
+    <p class="form-note">Brief intro to our service (2 mins)</p>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 BOSSIE LEVI LTDny. All rights reserved.</p>
+  <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>
